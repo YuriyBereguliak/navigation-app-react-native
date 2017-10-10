@@ -4,7 +4,8 @@
 /*jshint esversion: 6 */
 
 import React from 'react';
-import {Text, View, Button} from 'react-native';
+import {Text, View, Button, ScrollView} from 'react-native';
+import {Tile, List, ListItem} from 'react-native-elements';
 
 class UserDetailsScreen extends React.Component {
 
@@ -14,14 +15,55 @@ class UserDetailsScreen extends React.Component {
 
   //region Component
   render() {
-    const {params} = this.props.navigation.state;
+    const {
+      picture,
+      name,
+      email,
+      phone,
+      login,
+      dob,
+      location
+    } = this.props.navigation.state.params;
+
     return (
-      <View>
-        <Text>User {params.user}</Text>
-      </View>
+      <ScrollView>
+        <Tile imageSrc={{
+          uri: picture.large
+        }} title={`${name.first.toUpperCase()} ${name.last.toUpperCase()}`} caption={email} titleStyle={{
+          color: '#000'
+        }}>
+          <View>
+            <Text>{login.username}</Text>
+          </View>
+        </Tile>
+
+        <List>
+          <ListItem title="Email" rightTitle={email} rightTitleStyle={{
+            color: '#000'
+          }} hideChevron/>
+          <ListItem title="Phone" rightTitle={phone} rightTitleStyle={{
+            color: '#000'
+          }} hideChevron/>
+        </List>
+
+        <List>
+          <ListItem title="Username" rightTitle={login.username} rightTitleStyle={{
+            color: '#000'
+          }} hideChevron/>
+        </List>
+
+        <List>
+          <ListItem title="Birthday" rightTitle={dob} rightTitleStyle={{
+            color: '#000'
+          }} hideChevron/>
+
+          <ListItem title="City" rightTitle={location.city} rightTitleStyle={{
+            color: '#000'
+          }} hideChevron/>
+        </List>
+      </ScrollView>
     );
   }
-  //endregion
-
 }
+
 module.exports = UserDetailsScreen;

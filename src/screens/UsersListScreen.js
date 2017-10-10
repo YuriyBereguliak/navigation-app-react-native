@@ -6,6 +6,7 @@
 
 import React from 'react';
 import {Text, View, Button, ListView, TouchableOpacity} from 'react-native';
+import {ListItem} from 'react-native-elements';
 
 import api from '../utils/Api';
 
@@ -73,14 +74,10 @@ class UsersListScreen extends React.Component {
   renderUserDataRow(user) {
     return (
       <View>
-        <TouchableOpacity onPress={() => this.showMessage(user)} underlayColor='#E0E0E0'>
-          <View>
-            <View>
-              <Text>{user.name.last} {user.name.first}</Text>
-              <Text>{user.phone}</Text>
-              <Text>{user.email}</Text>
-            </View>
-          </View>
+        <TouchableOpacity onPress={() => this.onUserItemClickListener(user)} underlayColor='#E0E0E0'>
+          <ListItem roundAvatar avatar={{
+            uri: user.picture.thumbnail
+          }} key={user.id.value} title={`${user.name.first} ${user.name.last}`} subtitle={user.login.username} hideChevron/>
         </TouchableOpacity>
       </View>
     );
