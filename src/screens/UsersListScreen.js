@@ -1,10 +1,13 @@
 /**
   @author YuriyBereguliak
 */
-/*jshint esversion: 6 */
+
+// jshint esversion: 6
 
 import React from 'react';
 import {Text, View, Button} from 'react-native';
+
+import api from '../utils/Api';
 
 class UsersListScreen extends React.Component {
 
@@ -13,7 +16,26 @@ class UsersListScreen extends React.Component {
   };
 
   //region Component
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isPlacesLoaded: false
+    };
+  }
+
+  componentDidMount() {
+    this.loadUsers();
+  }
+
   render() {
+    if (!this.state.isPlacesLoaded) {
+      return (
+        <View>
+          <Text>Loading...</Text>
+        </View>
+      );
+    }
     return (
       <View>
         <Button title="Open" onPress={() => this.onUserItemClickListener({user: 'Den'})}/>
@@ -30,5 +52,18 @@ class UsersListScreen extends React.Component {
   };
   //endregion
 
+  //region Api
+  loadUsers() {
+    console.log("Send request");
+    api.getListItems().then((response) => {
+      this.setState({isPlacesLoaded: true});
+      if (response == null) {
+        console.error("Response == null");
+        return;
+      }
+      console.log(response);
+    });
+  }
+  //endregion
 }
 module.exports = UsersListScreen;
