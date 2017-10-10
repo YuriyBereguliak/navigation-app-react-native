@@ -1,6 +1,8 @@
-var api = {
-  getListItems() {
-    return fetch('https://kronosoft.herokuapp.com/api/v1/status/medical', {
+// jshint esversion: 6
+
+var baseRequest = {
+  getItems(url) {
+    return fetch(url, {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -8,11 +10,10 @@ var api = {
       }
     }).then((response) => {
       return response.json();
-    })
-    .catch((error) => {
+    }).catch((error) => {
       console.error(error);
     });
   }
 };
 
-module.exports = api;
+module.exports = baseRequest;
