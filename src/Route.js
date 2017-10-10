@@ -1,12 +1,35 @@
+/**
+  @author YuriyBereguliak
+*/
+
+// jshint esversion: 6
+
 import React, {Component} from 'react';
-import { StackNavigator } from 'react-navigation';
+import {StackNavigator} from 'react-navigation';
 
-import HomeScreen from './screens/HomeScreen.js';
+import UsersListScreen from './screens/UsersListScreen';
+import UserDetailsScreen from './screens/UserDetailsScreen';
 
-export const RouteApp = StackNavigator({
-  Home: {
-    screen: HomeScreen
+//region UserNavigation
+export const UserNavigation = StackNavigator({
+  UsersList: {
+    screen: UsersListScreen
+  },
+  UserDetails: {
+    screen: UserDetailsScreen
   }
 });
+//endregion
 
-module.exports = RouteApp;
+//region Root
+export const Root = StackNavigator({
+  UserNavigation: {
+    screen: UserNavigation
+  }
+}, {
+  mode: 'modal',
+  headerMode: 'none'
+});
+//endregion
+
+module.exports = Root;
