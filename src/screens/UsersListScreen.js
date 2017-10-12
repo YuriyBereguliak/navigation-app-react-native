@@ -42,6 +42,7 @@ class UsersListScreen extends React.Component {
     }
     return (
       <View>
+        <Button title="Gps" onPress={() => this._onGpsTrackingClickListener()}/>
         <ListView dataSource={this.state.userDataSource} renderRow={this.renderUserDataRow.bind(this)}/>
       </View>
     );
@@ -54,6 +55,10 @@ class UsersListScreen extends React.Component {
       ...user
     });
   };
+
+  _onGpsTrackingClickListener() {
+    this.props.navigation.navigate('GpsTracking');
+  }
   //endregion
 
   //region Network Api
@@ -77,7 +82,7 @@ class UsersListScreen extends React.Component {
         <TouchableOpacity onPress={() => this.onUserItemClickListener(user)} underlayColor='#E0E0E0'>
           <ListItem roundAvatar avatar={{
             uri: user.picture.thumbnail
-          }} key={user.id.value} title={`${user.name.first} ${user.name.last}`} subtitle={user.login.username} hideChevron/>
+          }} resizeMode='stretch' key={user.id.value} title={`${user.name.first} ${user.name.last}`} subtitle={user.login.username} hideChevron/>
         </TouchableOpacity>
       </View>
     );

@@ -29,7 +29,7 @@ class UserDetailsScreen extends React.Component {
       <ScrollView>
         <Tile imageSrc={{
           uri: picture.large
-        }} title={`${name.first.toUpperCase()} ${name.last.toUpperCase()}`} caption={email} titleStyle={{
+        }} resizeMode='cover' title={`${name.first.toUpperCase()} ${name.last.toUpperCase()}`} caption={email} titleStyle={{
           color: '#000'
         }}>
           <View>

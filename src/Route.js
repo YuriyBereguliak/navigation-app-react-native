@@ -9,6 +9,7 @@ import {StackNavigator} from 'react-navigation';
 
 import UsersListScreen from './screens/UsersListScreen';
 import UserDetailsScreen from './screens/UserDetailsScreen';
+import GpsTrackingScreen from './screens/GpsTrackingScreen';
 
 //region UserNavigation
 export const UserNavigation = StackNavigator({
@@ -17,6 +18,9 @@ export const UserNavigation = StackNavigator({
   },
   UserDetails: {
     screen: UserDetailsScreen
+  },
+  GpsTracking: {
+    screen: GpsTrackingScreen
   }
 });
 //endregion
